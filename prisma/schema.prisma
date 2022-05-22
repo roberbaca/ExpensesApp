@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource mydb {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+
+model Expense {
+  id          Int       @id @default(autoincrement())
+  title       String
+  //date        DateTime  //yyyy-mm-dd
+  createdAt   DateTime  @default(now())
+  amount      Int       
+  //category    Category  @relation(fields: [categoryId], references: [id])
+  //categoryId  Int
+}
+
+
+// model Category {
+//   id        Int       @id @default(autoincrement())
+//   createdAt DateTime  @default(now())
+//   title     String    @unique
+//   expense   Expense[]
+// }
+
+
+// Fuel
+// Clothes
+// Entertainment
+// Gifts
+// Holidays
+// Shopping
+// Sports
+// Travel
+// Food
+// General

@@ -16,7 +16,9 @@ app.use( (req, res) => {
     res.send();    
 });
 
-const PORT = process.env.PORT || 3000;
+
+const PORT = process.env.PORT || 5432;
+
 app.listen(PORT, () => {
     console.log(`🚀 Server ready at: http://localhost:${PORT} ⭐️`);
 });

@@ -1,9 +1,10 @@
 const expense = require("../models/expense");
 
 // para testeo:
-const helloWorld = async (req, res) => {
+const helloWorld = async (req, res, next) => {
     try {
-        res.send("Hello World!");       
+        res.send("Hello World!");  
+        next();     
 
     } catch(error){
         console.log(error);

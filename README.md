@@ -17,7 +17,7 @@ https://expenses-tracker-nucba.herokuapp.com/api/category/all
 :heavy_check_mark: POST - Crear un nuevo gasto:
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/add
 
-Ejemplo:
+Ejemplo body JSON:
 
 {   "title": "papas fritas",
     "amount": 6.74,
@@ -28,7 +28,7 @@ Ejemplo:
 :heavy_check_mark: GET - buscar todos los gastos de una determinada categoria
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/search
 
-Ejemplo:
+Ejemplo body JSON:
 
 {
     "category": 4
@@ -41,7 +41,7 @@ https://expenses-tracker-nucba.herokuapp.com/api/expenses/balance
 :heavy_check_mark: GET - Consultar el monto total de una determinada categoria:
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/balance-by-category
 
-Ejemplo:
+Ejemplo body JSON:
 
 {
     "category": 3

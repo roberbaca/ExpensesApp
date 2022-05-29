@@ -4,7 +4,7 @@ Expenses Tracker app - PostgreSQL + Prisma + Heroku
 
 # Endpoints - Category
 
-POST - Crear una nueva categoria:
+:heavy_check_mark: POST - Crear una nueva categoria:
 https://expenses-tracker-nucba.herokuapp.com/api/category/add 
 
 GET - Consultar el listado de todos las categorias creadas:

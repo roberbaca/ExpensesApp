@@ -19,9 +19,9 @@ https://expenses-tracker-nucba.herokuapp.com/api/expenses/add
 
 Ejemplo:
 
-{   "title": "circo",
+{   "title": "papas fritas",
     "amount": 6.74,
-    "category": 4
+    "category": 1
 }
 
 

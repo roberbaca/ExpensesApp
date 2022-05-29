@@ -20,3 +20,14 @@ Crear API:
 6 - Instalar Express y crear app de express
 7 - Definir y crear rutas para reemplazar los comandos
 8 - Crear los controllers para cada comando/ruta 
+
+// Fuel
+// Clothes
+// Entertainment
+// Gifts
+// Holidays
+// Shopping
+// Sports
+// Travel
+// Food
+// General

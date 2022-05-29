@@ -9,17 +9,18 @@ app.use( bodyParser.json() );
 app.use( cors() );
 
 const expensesRouter = require("./routes/expense");
+const categoriesRouter = require("./routes/category");
+
 app.use("/api/expenses", expensesRouter);
+app.use("/api/category", categoriesRouter);
 
 app.use( (req, res) => {
     res.statusCode = 404;
     res.send();    
 });
 
-
 const PORT = process.env.PORT || 3000;
 
-
 app.listen(PORT, () => {
-    console.log(`🚀 Server ready at: http://localhost:${PORT} ⭐️`);    
+    console.log(`🚀 Server ready at: http://localhost:${PORT} ⭐️`);
 });

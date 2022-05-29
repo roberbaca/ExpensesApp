@@ -7,16 +7,12 @@ router.get("/", expensesController.helloWorld); // para testeo
 
 router.post("/add", expensesController.addExpense);
 
-//router.post("/login", userController.loginUser);
+router.get("/all", expensesController.showAll);
 
+router.get("/search", expensesController.searchByCategory);
 
-//router.get("/rank", userController.getAllRankedUsers);
+router.get("/balance-by-category", expensesController.getBalanceByCategory);
 
-//router.get("/data", userController.getAllUsersData);
-
-//router.patch("/", userController.updateScore);
-
-
-
+router.get("/balance", expensesController.getBalance);
 
 module.exports = router;

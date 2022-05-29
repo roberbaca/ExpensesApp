@@ -7,41 +7,27 @@ generator client {
 
 datasource mydb {
   provider = "postgresql"
-  // provider = "mysql"
   url      = env("DATABASE_URL")
-  //shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+
+// Relacion 1-a-muchos entre Gastos (expense) y Categoria (category). 
+// Un gasto puede estar asociado solo a 1 categoria.
+// Pero una misma categoria puede estar asociado a muchos gastos distintos.
 
 model Expense {
-  id          Int       @id @default(autoincrement())
-  title       String  
-  createdAt   DateTime  @default(now())
-  amount      Int       
- 
+  id          Int         @id @default(autoincrement())
+  date        DateTime    @default(now())
+  title       String
+  amount      Float
+  category    Category    @relation(fields: [categoryId], references: [id])    
+  categoryId  Int
 }
 
-//date        DateTime  //yyyy-mm-dd
- //category    Category  @relation(fields: [categoryId], references: [id])
-  //categoryId  Int
+model Category {
+   id        Int       @id @default(autoincrement())
+   title     String    @unique
+   expenses  Expense[]    
+}
 
-
-
-// model Category {
-//   id        Int       @id @default(autoincrement())
-//   createdAt DateTime  @default(now())
-//   title     String    @unique
-//   expense   Expense[]
-// }
-
-
-// Fuel
-// Clothes
-// Entertainment
-// Gifts
-// Holidays
-// Shopping
-// Sports
-// Travel
-// Food
-// General

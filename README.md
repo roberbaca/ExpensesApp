@@ -1,5 +1,5 @@
 # ExpensesApp
-Expenses Tracker app - PostgreSQL + Prisma + Heroku
+Expenses Tracker app - PostgreSQL + Prisma + Heroku :rocket:
 
 
 # Endpoints - Category
@@ -7,13 +7,13 @@ Expenses Tracker app - PostgreSQL + Prisma + Heroku
 :heavy_check_mark: POST - Crear una nueva categoria:
 https://expenses-tracker-nucba.herokuapp.com/api/category/add 
 
-GET - Consultar el listado de todos las categorias creadas:
+:heavy_check_mark: GET - Consultar el listado de todos las categorias creadas:
 https://expenses-tracker-nucba.herokuapp.com/api/category/all 
 
 
 # Endpoints - Expenses
 
-POST - Crear un nuevo gasto:
+:heavy_check_mark: POST - Crear un nuevo gasto:
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/add
 
 Ejemplo:
@@ -25,7 +25,7 @@ Ejemplo:
 }
 
 
-GET - buscar todos los gastos de una determinada categoria
+:heavy_check_mark: GET - buscar todos los gastos de una determinada categoria
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/search
 
 Ejemplo:
@@ -34,11 +34,11 @@ Ejemplo:
     "category": 4
 }
  
-GET - Consultar el monto total:
+:heavy_check_mark: GET - Consultar el monto total:
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/balance
 
  
-GET - Consultar el monto total de una determinada categoria:
+:heavy_check_mark: GET - Consultar el monto total de una determinada categoria:
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/balance-by-category
 
 Ejemplo:
@@ -48,6 +48,6 @@ Ejemplo:
 }
 
 
-GET - Consultar el listado de todos los gastos creados:
+:heavy_check_mark: GET - Consultar el listado de todos los gastos creados:
 https://expenses-tracker-nucba.herokuapp.com/api/expenses/all
 

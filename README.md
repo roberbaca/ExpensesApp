@@ -1,4 +1,5 @@
 # ExpensesApp
+E2: BD SQL - App de Gastos | Backend
 Expenses Tracker app - PostgreSQL + Prisma + Heroku :rocket:
 
 
@@ -18,8 +19,7 @@ https://expenses-tracker-nucba.herokuapp.com/api/expenses/add
 
 Ejemplo:
 
-{    
-    "title": "circo",
+{   "title": "circo",
     "amount": 6.74,
     "category": 4
 }

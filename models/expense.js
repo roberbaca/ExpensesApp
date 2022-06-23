@@ -1,7 +1,7 @@
 const prisma = require("../utils/client");
 
 // crear un gasto
-const create = async (date, title, amount, categoryId) => {   
+const create = async (date, title, amount, categoryId, userId) => {   
 
     try {
         const newExpense = await prisma.expense.create(
@@ -14,9 +14,15 @@ const create = async (date, title, amount, categoryId) => {
                     connect: {
                         id: categoryId
                     }
-                }                
+                },
+                user: {
+                    connect: {
+                        id: userId
+                    }
+                }                       
             },           
         })        
+
       
         return (newExpense);        
         
@@ -26,13 +32,13 @@ const create = async (date, title, amount, categoryId) => {
     }
 }
 
-// obtenemos todos los gastos por categoria
+// obtenemos todos los gastos por categoria para un usuario determinado
 const getExpensesByCategory = async (category) => { 
 
     try {
         const expenses = await prisma.expense.findMany({           
               where: {
-                categoryId: category,
+                categoryId: category               
               },
               select: {
                 title: true,

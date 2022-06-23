@@ -10,9 +10,11 @@ app.use( cors() );
 
 const expensesRouter = require("./routes/expense");
 const categoriesRouter = require("./routes/category");
+const authRouter = require("./routes/auth");
 
 app.use("/api/expenses", expensesRouter);
 app.use("/api/category", categoriesRouter);
+app.use("/api/auth", authRouter);
 
 app.use( (req, res) => {
     res.statusCode = 404;

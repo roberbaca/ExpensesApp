@@ -7,13 +7,13 @@ generator client {
 
 datasource mydb {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_LOCAL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 
 // Relacion 1-a-muchos entre Gastos (expense) y Categoria (category). 
-// Un gasto puede estar asociado solo a 1 categoria.
+// Un gasto puede estar asociado solo a 1 categoria y a 1 usuario
 // Pero una misma categoria puede estar asociado a muchos gastos distintos.
 
 model Expense {
@@ -23,11 +23,21 @@ model Expense {
   amount      Float
   category    Category    @relation(fields: [categoryId], references: [id])    
   categoryId  Int
+  user        User        @relation(fields: [userId], references: [id])
+  userId      Int
 }
 
 model Category {
-   id        Int       @id @default(autoincrement())
-   title     String    @unique
+   id        Int          @id @default(autoincrement())
+   title     String       @unique
    expenses  Expense[]    
+}
+
+model User {
+  id          Int         @id @default(autoincrement())
+  email       String      @unique   
+  name        String?
+  password    String?
+  expenses    Expense[]
 }
 

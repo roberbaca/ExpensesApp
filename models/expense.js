@@ -4,6 +4,10 @@ const prisma = require("../utils/client");
 const create = async (date, title, amount, categoryId, userId) => {   
 
     try {
+
+        const userId = await prisma.user.findUnique({});
+
+        
         const newExpense = await prisma.expense.create(
             {
             data: {      

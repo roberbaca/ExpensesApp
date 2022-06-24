@@ -2,29 +2,25 @@ const bcrypt = require("bcrypt");
 const users = require("../models/users");
 const jwt = require("jsonwebtoken");
 
-const registerUser = async (req, res, next) => {
+const registerUser = async (req, res) => {
     try {
-        const userBody = req.body;
-
-        if (!validPassword(userBody.password)){
+        const name = req.body.name;
+        const email = req.body.email;        
+        const password = req.body.password;        
+        
+        if (!validPassword(password)){
             res.status(400).json({message: "Invalid password"});
             return;
-        }
-        // validar que el email exista
-        // validar que el mail NO exista en la DB        
-        if (await userWithEmailExists(userBody.email)) {
+        }            
+        
+        if (await userWithEmailExists(email)) {
             res.status(400).json({message: "Email already exists"});
             return;
-        }
-
-        const hash = await bcrypt.hash(userBody.password, 10);
-
-        newUser = {                
-            email: userBody.email,
-            password: hash            
-        }
-            
-        await users.createUser(newUser);
+        }        
+        
+        const hash = await bcrypt.hash(password, 10);
+        const newUser = await users.createUser(name, email, hash);
+        res.send(newUser);
         res.json("User created");
         return;
 
@@ -36,14 +32,22 @@ const registerUser = async (req, res, next) => {
 
 
 
-const loginUser = async (req, res, next) => {
-   const userBody = req.body;
-   const user = await users.findUserByEmail(userBody.email); // buscamos el usuario por email  
+const loginUser = async (req, res) => {
+
+    const name = req.body.name;
+    const email = req.body.email;        
+    const password = req.body.password;    
+    const user = await users.findUserByEmail(email); // buscamos el usuario por email  
 
     if (user){
-        const result = await bcrypt.compare(userBody.password, user.password);
+        const result = await bcrypt.compare(password, user.password);
         if(result){
-            const accessToken = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SECRET_KEY);
+            const accessToken = jwt.sign({    
+                id: user.id,             
+                name: user.name,
+                email: user.email,
+
+            }, process.env.ACCESS_TOKEN_SECRET_KEY);
             res.json({accessToken: accessToken});
             return;
         }
@@ -51,10 +55,22 @@ const loginUser = async (req, res, next) => {
     res.status(403).json({ message: "Email or password not valid" });
 }
 
-const logoutUser = (req, res, next) => {
+const logoutUser = async (req, res) => {
     res.json("Logout");
 }
 
+
+const getUserId = async (req, res) => {   
+    try {
+        const email = req.body.email;    
+        const user = await users.findUserByEmail(email);
+        res.json({userId: user.id});
+        return user !== null;
+    } catch(error) {
+        throw new Error("Error finding user");
+    }
+  
+}
 
 const userWithEmailExists = async (email) => {
     try {
@@ -69,4 +85,6 @@ const validPassword = (password) => {
     return password;
 }
 
-module.exports = { loginUser, logoutUser, registerUser }
+module.exports = { loginUser, logoutUser, registerUser, getUserId }
+
+

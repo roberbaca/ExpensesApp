@@ -12,3 +12,5 @@ router.post('/login', authController.loginUser)
 router.get('/user/me', isLogged, authController.getUserInfo)
 
 module.exports = router;
+
+

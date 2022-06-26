@@ -27,7 +27,6 @@ const findUserByEmail = async (email) => {
         });
         return user;
 
-
     } catch (error) {
         throw new Error("Error finding user");
     }

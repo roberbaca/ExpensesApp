@@ -1,4 +1,5 @@
 const expense = require("../models/expense");
+const user = require("../controllers/auth");
 
 // para testeo:
 const helloWorld = async (req, res) => {
@@ -19,8 +20,8 @@ const addExpense = async (req, res) => {
         const title = req.body.title;
         const amount = req.body.amount;
         const category = req.body.category;
-
-        const newExpense = await expense.create( date, title, amount, category );
+        const user = req.user;             
+        const newExpense = await expense.create( date, title, amount, category, user.id );
         res.send(newExpense);
     } catch(error) {
         console.log(error);
@@ -33,7 +34,8 @@ const addExpense = async (req, res) => {
 const searchByCategory = async (req, res) => {
     try {
         const category = req.body.category;
-        const getExpenses = await expense.getExpensesByCategory(category);
+        const user = req.user; 
+        const getExpenses = await expense.getExpensesByCategory(category, user.id);
         res.send(getExpenses);
     } catch(error) {
         console.log(error);
@@ -46,7 +48,8 @@ const searchByCategory = async (req, res) => {
 const getBalanceByCategory = async (req, res) => {
     try {
         const category = req.body.category;
-        const getBalance = await expense.getTotalAmountByCategory(category);
+        const user = req.user; 
+        const getBalance = await expense.getTotalAmountByCategory(category, user.id);
         res.send(getBalance);
     } catch(error) {
         console.log(error);
@@ -56,11 +59,11 @@ const getBalanceByCategory = async (req, res) => {
 }
 
 
-
 // mostrar todo el listado de gastos
 const showAll = async (req, res) => {
-    try {        
-        const allExpenses = await expense.getAllExpenses();
+    try {     
+        const user = req.user;    
+        const allExpenses = await expense.getAllExpenses(user.id);
         res.send(allExpenses);
     } catch(error) {
         console.log(error);
@@ -71,8 +74,9 @@ const showAll = async (req, res) => {
 
 // Muestra la suma total de gastos
 const getBalance = async (req, res) => {
-    try {        
-        const total = await expense.getTotalAmount();
+    try {    
+        const user = req.user;       
+        const total = await expense.getTotalAmount(user.id);
         res.send(total);
     } catch(error) {
         console.log(error);
@@ -82,5 +86,6 @@ const getBalance = async (req, res) => {
 }
 
 
-
 module.exports = { helloWorld, addExpense, searchByCategory, getBalance, showAll, getBalanceByCategory };
+
+

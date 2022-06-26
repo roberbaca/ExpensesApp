@@ -24,6 +24,7 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "name" TEXT,
     "password" TEXT,
+    "role" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

@@ -3,11 +3,7 @@ const prisma = require("../utils/client");
 // crear un gasto
 const create = async (date, title, amount, categoryId, userId) => {   
 
-    try {
-
-        const userId = await prisma.user.findUnique({});
-
-        
+    try {        
         const newExpense = await prisma.expense.create(
             {
             data: {      
@@ -26,7 +22,6 @@ const create = async (date, title, amount, categoryId, userId) => {
                 }                       
             },           
         })        
-
       
         return (newExpense);        
         
@@ -37,12 +32,13 @@ const create = async (date, title, amount, categoryId, userId) => {
 }
 
 // obtenemos todos los gastos por categoria para un usuario determinado
-const getExpensesByCategory = async (category) => { 
+const getExpensesByCategory = async (category, user) => { 
 
     try {
         const expenses = await prisma.expense.findMany({           
               where: {
-                categoryId: category               
+                categoryId: category,  
+                userId: user             
               },
               select: {
                 title: true,
@@ -61,7 +57,7 @@ const getExpensesByCategory = async (category) => {
 
 
 // obtenemos gasto total por categoria
-const getTotalAmountByCategory = async (category) => {
+const getTotalAmountByCategory = async (category, user) => {
 
     let total = 0;
 
@@ -69,6 +65,7 @@ const getTotalAmountByCategory = async (category) => {
         const expenses = await prisma.expense.findMany({           
               where: {
                 categoryId: category,
+                userId: user  
               },
               select: {
                 title: true,
@@ -90,9 +87,13 @@ const getTotalAmountByCategory = async (category) => {
 }
 
 // obtenemos el listado completo
-const getAllExpenses = async () => {
+const getAllExpenses = async (user) => {
     try {
-        const allExpenses = await prisma.expense.findMany();
+        const allExpenses = await prisma.expense.findMany({
+            where: {                
+                userId: user  
+              },
+        });
         return allExpenses;
         
     } catch(error) {
@@ -102,12 +103,16 @@ const getAllExpenses = async () => {
 }
 
 // obtenemos el monto total gastado
-const getTotalAmount = async () => {
+const getTotalAmount = async (user) => {
     
     let totalAmount = 0;
     
     try {
-        const totalExpenses = await prisma.expense.findMany();
+        const totalExpenses = await prisma.expense.findMany({
+            where: {                
+                userId: user  
+              },
+        });
        
         for (let i = 0; i < totalExpenses.length; i++) {
             totalAmount += totalExpenses[i].amount;           ;

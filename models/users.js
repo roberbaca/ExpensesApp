@@ -1,12 +1,13 @@
 const prisma = require("../utils/client");
 
-const createUser = async (name, email, password) => {
+const createUser = async (name, email, password, role) => {
   try {
     const newUser = await prisma.user.create({ 
       data: {
         name: name,
         email: email,
-        password: password
+        password: password,
+        role: role      
       }
     });
     
@@ -32,6 +33,23 @@ const findUserByEmail = async (email) => {
     }
 }
 
-module.exports = { createUser, findUserByEmail }
+const findUserInfo = async (userId) => {
+  try {
+      const user = await prisma.user.findUnique({
+          where: {
+            id: userId 
+          }
+      });
+      return user;
+
+
+  } catch (error) {
+      throw new Error("Error finding user");
+  }
+}
+
+
+
+module.exports = { createUser, findUserByEmail, findUserInfo }
 
 

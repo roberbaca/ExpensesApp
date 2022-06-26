@@ -7,10 +7,8 @@ const isLogged = require("../middlewares/authorization").userLoggedIn;
 // /api/auth/register
 router.post('/register', authController.registerUser)
 
-router.post('/logout', authController.logoutUser)
-
 router.post('/login', authController.loginUser)
 
-router.get('/user/me', isLogged, authController.getUserId)
+router.get('/user/me', isLogged, authController.getUserInfo)
 
 module.exports = router;

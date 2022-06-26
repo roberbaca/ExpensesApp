@@ -41,7 +41,6 @@ const findUserInfo = async (userId) => {
       });
       return user;
 
-
   } catch (error) {
       throw new Error("Error finding user");
   }

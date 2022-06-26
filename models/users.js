@@ -47,8 +47,6 @@ const findUserInfo = async (userId) => {
   }
 }
 
-
-
 module.exports = { createUser, findUserByEmail, findUserInfo }
 
 

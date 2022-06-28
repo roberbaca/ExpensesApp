@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 // middleware para autenticar el usuario
 const userLoggedIn = async (req, res, next) => {
@@ -12,7 +13,7 @@ const userLoggedIn = async (req, res, next) => {
     const token = tokenHeader.split(" ")[1];
     
     try {
-        const data = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_KEY)  
+        const data = await jwt.verify(token, `${process.env.ACCESS_TOKEN_SECRET_KEY}`)  
         req.user = {
             id: data.id,            
             email: data.email,  
@@ -35,7 +36,7 @@ const authorizeAdmin = async (req, res, next) => {
     }
     const token = tokenHeader.split(" ")[1];
     try {
-      const data = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_KEY);
+      const data = await jwt.verify(token, `${process.env.ACCESS_TOKEN_SECRET_KEY}`);
       if (data.role !== "admin") {
         res.status(403).json({ message: "Not authorized: must be admin" });
         return;

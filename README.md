@@ -4,7 +4,9 @@ Expenses Tracker app - PostgreSQL + Prisma + Heroku :rocket:
 
 # Features
 
+<br>
 :heavy_check_mark: Node
+</br>
 :heavy_check_mark: Express
 :heavy_check_mark: Base de datos relacional PostgreSQL + Prisma
 :heavy_check_mark: Deploy en Heroku

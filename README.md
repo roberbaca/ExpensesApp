@@ -43,20 +43,7 @@ Si en rol se coloca "admin" se crea un usuario que tiene permisos para crear nue
 
 Ejemplo body JSON:
 
-{   
-    <br>
-    "name": "Cosme Fulanito",
-    </br>
-    <br>
-    "email": "cosmefulanito@mail.com",
-        </br>
-    <br>
-    "password": "pass12345",
-        </br>
-    <br>
-    "role": "admin"
-        </br>
-}
+{ "name": "Cosme Fulanito", "email": "cosmefulanito@mail.com", "password": "pass12345", "role": "admin" }
 
 
 # Endpoints - Login
@@ -66,9 +53,7 @@ https://expenses-tracker-nucba.herokuapp.com/api/auth/login
 
 Ejemplo body JSON:
 
-{   "email": "cosmefulanito@mail.com",
-    "password": "pass12345"    
-}
+{ "email": "cosmefulanito@mail.com", "password": "pass12345" }
 
 # Endpoints - User Info
 

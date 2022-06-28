@@ -7,11 +7,21 @@ Expenses Tracker app - PostgreSQL + Prisma + Heroku :rocket:
 <br>
 :heavy_check_mark: Node
 </br>
+<br>
 :heavy_check_mark: Express
+</br>
+<br>
 :heavy_check_mark: Base de datos relacional PostgreSQL + Prisma
+</br>
+<br>
 :heavy_check_mark: Deploy en Heroku
+</br>
+<br>
 :heavy_check_mark: Autenticacion de usuarios con JSON Web Token
+</br>
+<br>
 :heavy_check_mark: Encriptacion de contraseñas con bcrypt
+</br>
 
 
 
@@ -33,10 +43,19 @@ Si en rol se coloca "admin" se crea un usuario que tiene permisos para crear nue
 
 Ejemplo body JSON:
 
-{   "name": "Cosme Fulanito",
+{   
+    <br>
+    "name": "Cosme Fulanito",
+    </br>
+    <br>
     "email": "cosmefulanito@mail.com",
+        </br>
+    <br>
     "password": "pass12345",
+        </br>
+    <br>
     "role": "admin"
+        </br>
 }
 
 

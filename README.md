@@ -57,7 +57,7 @@ Ejemplo body JSON:
 
 # Endpoints - User Info
 
-:heavy_check_mark: POST - Devuelve los datos del usuario que esta logueado:
+:heavy_check_mark: GET - Devuelve los datos del usuario que esta logueado:
 https://expenses-tracker-nucba.herokuapp.com/api/auth/user/me
 
 

@@ -1,4 +1,4 @@
-E2: BD SQL - App de Gastos | Backend
+BD SQL - App de Gastos | Backend
 
 - Utilizar PostgreSQL como DB
 - Prisma como ORM

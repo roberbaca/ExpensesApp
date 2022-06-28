@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const users = require("../models/users");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const registerUser = async (req, res) => {
     try {
@@ -49,7 +50,7 @@ const loginUser = async (req, res) => {
                 email: user.email,
                 role: getUserRole(user),
 
-            }, process.env.ACCESS_TOKEN_SECRET_KEY);
+            }, `${process.env.ACCESS_TOKEN_SECRET_KEY}`);
 
             res.json({accessToken: accessToken});
             return;
